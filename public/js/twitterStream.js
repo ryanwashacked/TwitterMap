@@ -57,7 +57,7 @@ $(function(){
     });
 
     socket.on('twitter-stream-text', function(data){
-      tweetsText.innerHTML = tweetsText.innerHTML + '<p class="text text-success">' + '<b>'+data.screen_name +' : </b>' + data.text +'</p>';
+      tweetsText.innerHTML = tweetsText.innerHTML + '<p class="text text-success">' + '<b style="color:red";>'+data.screen_name +' : </b>' + data.text +'</p>';
       tweetTextContainer.scrollTop = tweetTextContainer.scrollHeight;
     })
 

@@ -20,13 +20,15 @@
   padding-top:0px;
 }
 #twitterText{
+	  margin-top: 3em;
 	position: fixed;
 	bottom: 0;
-	height: 300px;
-	width: 500px;
-	background-color: rgb(19, 19, 19);
+	height: 100%;
+	width: 250px;
+	background-color: rgba(19, 19, 19, 0.9);
 	border: 1px solid gray;
-	overflow: auto;
+	overflow-y: auto;
+	overflow-x : hidden;
 }
 #filterControls{
 	z-index: 99999;
@@ -43,4 +45,7 @@
 }
 #filterControls div{
 	margin-top: 2px;
+}
+#actualTexT{
+	margin-top:3em;
 }
