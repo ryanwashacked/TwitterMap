@@ -1,0 +1,10 @@
+{
+	"name": "twitter-map" ,
+	"main": "app.js",
+	"dependencies":{
+		 "express": "*",
+		 "mongoose" : "*",
+		 "twitter" : "*",
+		 "socket.io": "*"
+	}
+}
