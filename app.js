@@ -26,11 +26,7 @@ app.use(express.static(__dirname + '/public'));
 //Create web sockets connection.
 io.sockets.on('connection', function(socket) {
 
-    socket.on("start tweets", function(data) {
-        console.log("start tweets")
-        console.log("============")
-        console.log(data)
-        console.log("============")        
+    socket.on("start tweets", function(data) {       
         if (typeof data !== 'undefined') {
             twit.currentStream = null;
             language = data.language;
