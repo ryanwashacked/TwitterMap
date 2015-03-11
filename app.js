@@ -1,4 +1,4 @@
-//Setup web server and socket
+// Setup web server and socket
 var twitter = require('twitter'),
     express = require('express'),
     app = express(),
@@ -14,10 +14,9 @@ var twit = new twitter({
         access_token_key: '1140441464-PRPMkmQuFvUtlbbVbCBcZqzOtEvPnKaM6eG4ga3',
         access_token_secret: 'yz1n4u8AU8SvbXPqzRsyWc5DqqpPSFFNfh8MWOYh9Pk6M'
     }),
-    stream = null,
     filter = '',
-    language = 'el';
-
+    language = 'en';
+    twit.currentStream = null;
 //Use the default port (for beanstalk) or default to 8081 locally
 server.listen(process.env.PORT || port);
 console.log('Your application is running on http://localhost:' + port);
@@ -28,13 +27,16 @@ app.use(express.static(__dirname + '/public'));
 io.sockets.on('connection', function(socket) {
 
     socket.on("start tweets", function(data) {
-
+        console.log("start tweets")
+        console.log("============")
+        console.log(data)
+        console.log("============")        
         if (typeof data !== 'undefined') {
-            stream = null;
+            twit.currentStream = null;
             language = data.language;
             filter = data.filter;
         }
-        if (stream === null) {
+        if ( twit.currentStream === null) {
             //Connect to twitter stream passing in filter for entire world.
             twit.stream('statuses/filter', {
                 'locations': '-180,-90,180,90',
@@ -68,8 +70,16 @@ io.sockets.on('connection', function(socket) {
                         }
                     }
                 });
+                twit.currentStream = s;
+                stream.on('error', function(error) {
+                    throw error;
+                });
             });
         }
+    socket.on('stop-stream', function(data) {
+            twit.currentStream.destroy()
+            console.log('current stream destroyed')
+        });
     });
 
     // Emits signal to the client telling them that the
