@@ -17,9 +17,9 @@ var twit = new twitter({
     filter = '',
     language = 'en';
     twit.currentStream = null;
-//Use the default port (for beanstalk) or default to 8081 locally
+//Use the default port or default to 8081 locally
 server.listen(process.env.PORT || port);
-console.log('Your application is running on http://localhost:' + port);
+console.log('Magic happens at http://localhost:' + port);
 //Setup rotuing for app
 app.use(express.static(__dirname + '/public'));
 
@@ -66,10 +66,10 @@ io.sockets.on('connection', function(socket) {
                         }
                     }
                 });
-                twit.currentStream = s;
                 stream.on('error', function(error) {
                     throw error;
                 });
+                twit.currentStream = s;
             });
         }
     socket.on('stop-stream', function(data) {
