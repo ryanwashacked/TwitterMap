@@ -82,11 +82,11 @@ function initMap(){
 
   
 function getResults(){
-    var data = {
-      "filter" : $("#filterInput").val(),
-      "language" : $("#selectLanguage").val()
-    }
-    socket.emit("stop-stream");
-    heatmap.setMap(null)
-    socket.emit("start tweets", data);
+  var data = {
+    "filter" : $("#filterInput").val(),
+    "language" : $("#selectLanguage").val()
+  }
+  socket.emit("stop-stream");
+  heatmap.setMap(null)
+  socket.emit("start tweets", data);
 }
